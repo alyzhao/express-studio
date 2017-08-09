@@ -1,0 +1,26 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "learn express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gegehehehe/express-studio.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "captainZhao\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[3~\u001b[3~\u001b[C",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gegehehehe/express-studio/issues"
+  },
+  "homepage": "https://github.com/gegehehehe/express-studio#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
