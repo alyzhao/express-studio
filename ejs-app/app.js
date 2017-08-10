@@ -57,12 +57,12 @@ let _id = '598c14505ea4a23750ccb05c';
 /**** 新增 ****/
 // 1. 使用Entity新增
 /*let newDocument = new testModel({
-	title: '弗洛伊德梦的解析',
+	title: '弗洛伊德梦的解析2',
 	author: '弗洛伊德',
 	comments: [{body: 'a good book about psychology', date: Date()}],
 	// date: { type: Date, default: Date.now },
     meta: {
-        votes: 8,
+        votes: 10,
         favs: 6
     }
 });
@@ -102,7 +102,7 @@ testModel.create(newDocument, (err, document) => {
 })*/
 
 //2. Entity删除, 官网上没有出现Entity, 只有document
-testModel.findById(_id, (err, result) => {
+/*testModel.findById(_id, (err, result) => {
 	console.log(result)
 	if (err) return console.error(err);
 	result.remove((err, res) => {
@@ -110,14 +110,67 @@ testModel.findById(_id, (err, result) => {
 		console.log(res);
 	})
 })
+*/
+/*** 查询 ***/
+//1. findById
+/*testModel.findById('598c138848914b2b6cd8713b', function(err, result) {
+	if (!err) {
+		console.log(result);
+	}
+})*/
 
-// testModel.findById('598bfbe7840a3d344c2d09d6', function(err, result) {
-// 	result.title = '深夜食堂';
-// 	let _id = result._id;
-// 	delete result._id;
-// 	testModel.update({_id: _id}, result, err => {});
-// })
+//2. Model的find方法
+/*testModel.find({title: '弗洛伊德梦的解析'}, (err, result) => {
+	if (!err) {
+		console.log(result);
+	}
+})*/
 
+//3. Model的findOne方法
+/*testModel.findOne({author: '弗洛伊德'}, (err, result) => {
+	if (!err) {
+		console.log(result);
+	}
+});*/
+// 查询指定的字段fields
+/*testModel.findOne({author: '弗洛伊德'}, ['_id', 'title'], (err, result) => {
+	if (!err) {
+		console.log(result);
+	}
+});*/
+// 查询指定字段大于等于8, 小于等于9的结果
+/*testModel.where('meta.votes').gte(8).lte(9).exec((err, result) => {
+	console.log(err);	// null
+	console.log(result);	// 返回结果
+})
+	等价于 ==>
+testModel.find({'meta.votes': {$gte: 8, $lte: 9}}, (err, result) => {
+	console.log(err);
+	console.log(result);
+})*/
+
+/*** query ***/
+
+/** query可以有很多种操作
+let testQuery = testModel.findOne({author: '弗洛伊德'});
+testQuery.select('_id title meta');
+
+testQuery.exec((err, result) => {
+	if (err) return console.error(err);
+	console.log(result);
+})*/
+
+testModel
+	.find({
+		author: { $in: '弗洛伊德' }
+	})
+	.limit(2) 		// limit限制条数
+	.sort({ title: 1 }) 	// 按照某个field排序1是正序, -1是倒序	
+	// .select({title: 1, author: 1})  查询指定的field, 0 -- 不查询, 1 -- 查询, 默认会带上_id
+	.exec((err, result) => {
+		if (err) return console.error(err);
+		console.log(result);		
+	});
 // testDocument.findAuthor(function(err, results) {
 // 	console.log(results);
 // })
