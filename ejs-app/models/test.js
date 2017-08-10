@@ -1,18 +1,6 @@
-const mongodb = require('./mongodb');
-const Schema = mongodb.mongoose.Schema;
+const mongoose = require('mongoose');
+const testSchema = require('../schemas/test');
 
-let testSchema = new Schema({
-	title: String,
-	author: String,
-	comments: [{body: String, date: Date}],
-	date: { type: Date, default: Date.now },
-    meta: {
-        votes: Number,
-        favs: Number
-    }
-});
+const testModel = mongoose.model('test', testSchema, 'test');	// 把testSchema注册到collection test上
 
-let Test = mongodb.mongoose.model('test1', testSchema);
-let TestDAO = function() {};
-module.exports = new TestDAO();
-
+module.exports = testModel;
