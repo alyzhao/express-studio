@@ -90,6 +90,7 @@ testModel.create(newDocument, (err, document) => {
 })*/
 
 /*** 删除 ***/
+// 返回的result是一堆对象, 可以看api
 //1. model删除
 /*testModel.remove({title: '老人与海'}, (err, doc) => {
 	if (err) return console.error(err);
@@ -103,7 +104,7 @@ testModel.create(newDocument, (err, document) => {
 
 //2. Entity删除, 官网上没有出现Entity, 只有document
 /*testModel.findById(_id, (err, result) => {
-	console.log(result)
+	console.log(result)	
 	if (err) return console.error(err);
 	result.remove((err, res) => {
 		console.log(err);
